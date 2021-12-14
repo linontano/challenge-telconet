@@ -1,9 +1,12 @@
-from flask import Flask;
+from flask import Flask
+from flask_cors import CORS, cross_origin
 from flask_restful import Api, Resource, abort
 import mysql.connector as db
 from mysql.connector import Error
 
 app = Flask(__name__)
+cors =CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 api = Api(app)
 
 def connectionMysql():
@@ -54,10 +57,10 @@ def getRoutes(network):
         abort(503)
 
 class Route(Resource):
+    @cross_origin()
     def get(self, network):
         return getRoutes(network)
 
 api.add_resource(Route, "/api/routes/<string:network>")
-
 if __name__ =="__main__":
     app.run(debug=True)
