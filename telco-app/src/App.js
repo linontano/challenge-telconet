@@ -18,19 +18,10 @@ class App extends Component{
   handleSubmit = (event) => {
     this.setState({ isLoaded: true })
     event.preventDefault();
-    //API
-  }
-  checkIp = (ipNumber) =>{
-    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipNumber))
-    {
-      return (true)
-    }
-    alert("You have entered an invalid IP address!")
-    return (false)
   }
   componentDidUpdate(){
-    const BASE = "https://jsonplaceholder.typicode.com/todos";
     if(this.state.isLoaded){
+      const BASE = "http://backend:5000/api/routes/"+this.state.ip;
       console.log("Checking DATA!", BASE)
       fetch(BASE)
         .then(response=>response.json())
@@ -39,6 +30,7 @@ class App extends Component{
   }
   render() {
     const { output, ip } = this.state
+    console.log(output);
     return(
       <React.Fragment>
         <NavBar />
@@ -48,14 +40,16 @@ class App extends Component{
             onSubmit={this.handleSubmit}
             input={ip}
             />
+            <div className="p-2">
             {
-              output.length > 0 ?
-              output.map((item, index)=>(
-                <p key={index}>{ item.title }</p>
-              ))
+              Object.entries(output).length > 0 ?
+              
+                <pre>{ output["OUTPUT"] ?? output.message }</pre>
+              
               :
               <p className="text-center">No existen elementos que mostrar</p>
             }
+            </div>
             
         </main>
       </React.Fragment>
