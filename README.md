@@ -1,4 +1,23 @@
-# challenge-telconet
+# Endpoint React App
+`http://localhost:8000`
+# Endpoint Flask API
+`http://localhost:5000`
+The REST API to the example app is described below.
+## Get routes BGP <network>
+
+### Request
+
+`GET /api/routes/<network>`
+### Response
+    HTTP/1.1 200 OK
+    Date: Thu, 22 Dec 2011 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 4487
+    {OUTPUT:"show bgp ipv4 unicast ... route-server> exit",TIME: "2021-12-09 12:03:20"}
+    
+# Challenge Telconet Teoría
 5. El ciclo de vida vendría a ser:
    - Planificación:
      Analizar los requisitos y, de la idea abstracta del resultado final, afinar los detalles del proceso para obtener el resultado deseado.
