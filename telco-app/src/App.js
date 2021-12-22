@@ -21,7 +21,7 @@ class App extends Component{
   }
   componentDidUpdate(){
     if(this.state.isLoaded){
-      const BASE = "http://backend:5000/api/routes/"+this.state.ip;
+      const BASE = "http://localhost:5000/api/routes/"+this.state.ip;
       console.log("Checking DATA!", BASE)
       fetch(BASE)
         .then(response=>response.json())
